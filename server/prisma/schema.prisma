@@ -13,11 +13,11 @@ model OnboardingCase {
   email         String?
   status        String   @default("PENDING")
   createdAt     DateTime @default(now())
-  identity      Json
-  address       Json
-  employment    Json?
-  documents     Json?
-  riskIndicators Json?
+  identity      String
+  address       String
+  employment    String?
+  documents     String?
+  riskIndicators String?
   agentRuns     AgentRun[]
 }
 
@@ -26,9 +26,9 @@ model AgentRun {
   caseId         String
   onboardingCase OnboardingCase @relation(fields: [caseId], references: [id])
   mode           String
-  input          Json
-  findings       Json?
-  trace          Json?
+  input          String
+  findings       String?
+  trace          String?
   createdAt      DateTime @default(now())
   recommendations Recommendation[]
 }

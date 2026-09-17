@@ -13,31 +13,31 @@ async function main() {
       applicantName: 'Alice Clean',
       email: 'alice.clean@example.com',
       status: 'PENDING',
-      identity: {
+      identity: JSON.stringify({
         firstName: 'Alice',
         lastName: 'Clean',
         dob: '1990-02-15',
         ssn: '000-00-0000',
         nationality: 'Freedonia'
-      },
-      address: {
+      }),
+      address: JSON.stringify({
         street: '100 Main St',
         city: 'Central City',
         state: 'CA',
         postalCode: '90001',
         country: 'Freedonia'
-      },
-      employment: {
+      }),
+      employment: JSON.stringify({
         employer: 'Acme Corp',
         position: 'Engineer',
         startDate: '2018-06-01',
         incomeMonthly: 8000
-      },
-      documents: [
+      }),
+      documents: JSON.stringify([
         { type: 'passport', id: 'P-A-100', issuedAt: '2015-01-01' },
         { type: 'utility_bill', id: 'UB-100', issuedAt: '2026-01-01' }
-      ],
-      riskIndicators: ['CLEAN']
+      ]),
+      riskIndicators: JSON.stringify(['CLEAN'])
     }
   })
 
@@ -47,30 +47,28 @@ async function main() {
       applicantName: 'Robert Politico',
       email: 'robert.politico@example.com',
       status: 'PENDING',
-      identity: {
+      identity: JSON.stringify({
         firstName: 'Robert',
         lastName: 'Politico',
         dob: '1970-11-05',
         ssn: '111-11-1111',
         nationality: 'Freedonia'
-      },
-      address: {
+      }),
+      address: JSON.stringify({
         street: '1 Government Plaza',
         city: 'Capital City',
         state: 'DC',
         postalCode: '20001',
         country: 'Freedonia'
-      },
-      employment: {
+      }),
+      employment: JSON.stringify({
         employer: 'Government of Freedonia',
         position: 'Former Minister of Trade',
         startDate: '2000-01-01',
         incomeMonthly: 15000
-      },
-      documents: [
-        { type: 'passport', id: 'P-B-200', issuedAt: '2010-05-20' }
-      ],
-      riskIndicators: ['PEP_EXCEPTION']
+      }),
+      documents: JSON.stringify([{ type: 'passport', id: 'P-B-200', issuedAt: '2010-05-20' }]),
+      riskIndicators: JSON.stringify(['PEP_EXCEPTION'])
     }
   })
 
@@ -80,30 +78,28 @@ async function main() {
       applicantName: 'Carla Sancho',
       email: 'carla.sancho@example.com',
       status: 'PENDING',
-      identity: {
+      identity: JSON.stringify({
         firstName: 'Carla',
         lastName: 'Sancho',
         dob: '1985-08-09',
         ssn: '222-22-2222',
         nationality: 'Freedonia'
-      },
-      address: {
+      }),
+      address: JSON.stringify({
         street: '55 Harbor Rd',
         city: 'Portsmouth',
         state: 'NY',
         postalCode: '10010',
         country: 'Freedonia'
-      },
-      employment: {
+      }),
+      employment: JSON.stringify({
         employer: 'Maritime LLC',
         position: 'Operations Manager',
         startDate: '2012-09-01',
         incomeMonthly: 7000
-      },
-      documents: [
-        { type: 'id_card', id: 'ID-C-300', issuedAt: '2016-03-15' }
-      ],
-      riskIndicators: ['SANCTIONS_MATCH']
+      }),
+      documents: JSON.stringify([{ type: 'id_card', id: 'ID-C-300', issuedAt: '2016-03-15' }]),
+      riskIndicators: JSON.stringify(['SANCTIONS_MATCH'])
     }
   })
 
