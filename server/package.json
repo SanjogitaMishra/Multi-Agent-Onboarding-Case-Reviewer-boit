@@ -27,4 +27,8 @@
     "@types/cors": "^2.8.12",
     "@types/node": "^18.0.0"
   }
+  ,
+  "scripts": {
+    "test": "ts-node test/orchestrator.test.ts"
+  }
 }
