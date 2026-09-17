@@ -1,0 +1,14 @@
+{
+  "name": "banking-onboarding-case-reviewer",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "client",
+    "server",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "npm -w server run dev & npm -w client run dev",
+    "install-all": "npm install --workspaces"
+  }
+}
