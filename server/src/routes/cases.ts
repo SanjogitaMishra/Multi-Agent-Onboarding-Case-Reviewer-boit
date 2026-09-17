@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import prisma from '../db'
 import { CaseDB, ReviewRequest } from '@bank/shared'
+import { runOrchestration } from '../orchestrator'
 
 const router = Router()
 
@@ -30,6 +31,22 @@ router.post('/:id/review', async (req, res) => {
 
   const updated = await prisma.onboardingCase.update({ where: { id }, data: { status } })
   res.json({ id: updated.id, status: updated.status })
+})
+
+router.post('/:id/orchestrate', async (req, res) => {
+  const id = req.params.id
+  const body = req.body || {}
+  try {
+    const mode = body.mode || 'AUTONOMOUS'
+    const options = {
+      humanApprovalRequired: Boolean(body.humanApprovalRequired),
+      exceptionOnly: Boolean(body.exceptionOnly)
+    }
+    const result = await runOrchestration(id, mode, options)
+    res.json(result)
+  } catch (err: any) {
+    res.status(500).json({ error: String(err) })
+  }
 })
 
 export default router
