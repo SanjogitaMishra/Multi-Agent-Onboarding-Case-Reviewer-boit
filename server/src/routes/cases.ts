@@ -49,4 +49,27 @@ router.post('/:id/orchestrate', async (req, res) => {
   }
 })
 
+router.get('/:id/runs', async (req, res) => {
+  const id = req.params.id
+  try {
+    const runs = await prisma.agentRun.findMany({ where: { caseId: id }, orderBy: { createdAt: 'desc' } })
+    const mapped = await Promise.all(
+      runs.map(async (r) => {
+        const rec = await prisma.recommendation.findFirst({ where: { agentRunId: r.id } })
+        return {
+          id: r.id,
+          createdAt: r.createdAt,
+          input: r.input ? JSON.parse(r.input) : undefined,
+          findings: r.findings ? JSON.parse(r.findings) : [],
+          trace: r.trace ? JSON.parse(r.trace) : [],
+          recommendation: rec ? { result: rec.result, notes: rec.notes, createdAt: rec.createdAt } : undefined
+        }
+      })
+    )
+    res.json(mapped)
+  } catch (err: any) {
+    res.status(500).json({ error: String(err) })
+  }
+})
+
 export default router
